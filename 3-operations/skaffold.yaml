@@ -1,0 +1,38 @@
+apiVersion: skaffold/v2beta2
+kind: Config
+
+profiles:
+  - name: dev
+    activation:
+      - command: dev
+    build:
+      tagPolicy:
+        envTemplate:
+          template: "{{.IMAGE_NAME}}"
+      artifacts:
+        - image: csantanapr/service-a-nodejs-think2020
+          context: service-a
+          docker:
+            buildArgs:
+              ENV: development
+          sync:
+            infer:
+              - "src/**/*.js"
+        - image: csantanapr/service-b-nodejs-think2020
+          context: service-b
+          docker:
+            buildArgs:
+              ENV: development
+          sync:
+            infer:
+              - "src/**/*.js"
+
+build:
+  tagPolicy:
+    envTemplate:
+      template: "{{.IMAGE_NAME}}"
+  artifacts:
+    - image: csantanapr/service-a-nodejs-think2020
+      context: service-a
+    - image: csantanapr/service-b-nodejs-think2020
+      context: service-b

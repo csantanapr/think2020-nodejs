@@ -1,0 +1,2 @@
+histogram_quantile(0.90, sum(rate(http_request_duration_seconds_bucket{status_code!~"5.*"}[5m])) by (le,pod))
+histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{status_code!~"5.*"}[5m])) by (le,pod))

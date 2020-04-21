@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: node
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+  type: LoadBalancer
+  selector:
+    app: node
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node
+spec:
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+        - name: node
+          image: csantanapr/nodejs-k8s-think2020
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: PORT
+              value: "8080"
+            - name: DELAY
+              value: "1"
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "125m"
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
