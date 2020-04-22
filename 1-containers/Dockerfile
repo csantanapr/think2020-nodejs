@@ -15,6 +15,8 @@ RUN npm run build
 
 FROM base
 
+WORKDIR /opt/app-root/src
+
 COPY --from=builder  /opt/app-root/src/build build
 
 COPY package*.json ./
@@ -26,7 +28,7 @@ RUN chmod -R g=u server
 
 ENV PORT=8080
 
-LABEL com.example.source="https://github.com/acme/nodejsapp"
+LABEL com.example.source="https://github.com/csantanapr/think2020-nodejs"
 LABEL com.example.version="1.0"
 
 ARG ENV=production

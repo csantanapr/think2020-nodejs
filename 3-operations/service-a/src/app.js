@@ -38,7 +38,7 @@ const hello = require('./hello')
 app.get('/sayHello/:name', hello)
 
 app.disable('etag')
-app.listen(port, () => console.log(`Service ${serviceName} listening on port ${port}!`))
+app.listen(port, () => console.log(`Service ${serviceName} listening on port ${port}! ready for ${process.env.NODE_ENV}`))
 
 function initTracer(serviceName) {
   const initJaegerTracer = require('jaeger-client').initTracerFromEnv
