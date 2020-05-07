@@ -2,6 +2,8 @@
 
 Examples used during IBM THINK2020 on "Lessons learned for Cloud Native Apps using Node.js"
 
+Video and Charts available [here](https://www.ibm.com/events/think/watch/replay/126578182/)
+
 - [Containers](./1-containers)
 ```
 cd 1-containers/

@@ -14,7 +14,7 @@ server.listen(port, function () {
 
 
 setTimeout(() => {
-    app.get('/hello', (req, res) => res.send('Hello World'));
+    app.get('/hello', (req, res) => res.send('Hello World Node.js Wow so fast'));
     app.get('/ready', (req, res) => res.json({ status: 'UP' }));
     app.use(express.static(path.join(__dirname, "../build")));
     console.log(`app is ready for ${process.env.NODE_ENV}`);
