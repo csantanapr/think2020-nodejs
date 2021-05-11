@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: node
-          image: csantanapr/nodejs-k8s-think2020
+          image: nodejs-k8s-think2020
           ports:
             - containerPort: 8080
               name: http

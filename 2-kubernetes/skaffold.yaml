@@ -1,16 +1,18 @@
-apiVersion: skaffold/v2beta2
+apiVersion: skaffold/v2beta15
 kind: Config
 
+build:
+  artifacts:
+    - image: nodejs-k8s-think2020
+      context: ../1-containers
+      
 profiles:
   - name: dev
     activation:
       - command: dev
     build:
-      tagPolicy:
-        envTemplate:
-          template: "{{.IMAGE_NAME}}"
       artifacts:
-        - image: csantanapr/nodejs-k8s-think2020
+        - image: nodejs-k8s-think2020
           context: ../1-containers
           docker:
             buildArgs:
@@ -19,10 +21,4 @@ profiles:
             infer:
               - "server/**/*.js"
 
-build:
-  tagPolicy:
-    envTemplate:
-      template: "{{.IMAGE_NAME}}"
-  artifacts:
-    - image: csantanapr/nodejs-k8s-think2020
-      context: ../1-containers
+

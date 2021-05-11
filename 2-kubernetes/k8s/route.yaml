@@ -1,0 +1,12 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: node
+  labels:
+    app.kubernetes.io/managed-by: skaffold
+spec:
+  to:
+    kind: Service
+    name: node
+  port:
+    targetPort: http
